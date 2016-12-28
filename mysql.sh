@@ -4,8 +4,7 @@ if [[ $(id -u) -ne 0 ]];then
     echo "You must use this script in root"
     exit 
 fi
-    echo "Please Set  Password For Mysql root"
-#mysqlrootPWD="tianyu"
+    echo "Please Set Password For Mysql root"
     read -p "Please Input Password(Default tianyu):" mysqlrootPWD
 if [[ $mysqlrootPWD = "" ]];then
     mysqlrootPWD="tianyu"
