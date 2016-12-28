@@ -5,6 +5,7 @@ if [[ $(id -u) -ne 0 ]];then
     exit 
 fi
     echo "Please Set  Password For Mysql root"
+#mysqlrootPWD="tianyu"
     read -p "Please Input Password(Default tianyu):" mysqlrootPWD
 if [[ $mysqlrootPWD = "" ]];then
     mysqlrootPWD="tianyu"
@@ -23,6 +24,7 @@ yes|YES|y|Yes|Y|YeS|YEs|yES|yEs|yeS)
     exit
     ;;
 esac
+
 MEM=`free -m|grep Mem|awk '{print $2}'`
 echo "System Memory is $MEM"
 if [ -s /etc/sysconfig/selinux ];then
@@ -188,5 +190,6 @@ fi
 
 setlimit 2>&1 | tee mysql-install.log
 installmysql 2>&1 | tee -a mysql-install.log
+CheckInstall 2>&1 | tee -a mysql-install.log
 CheckInstall 2>&1 | tee -a mysql-install.log
 CheckInstall 2>&1 | tee -a mysql-install.log
