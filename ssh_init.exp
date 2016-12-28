@@ -1,0 +1,19 @@
+#!/usr/bin/expect -f
+
+set timeout 9999999
+match_max 2000
+set REMOTE_PASS 5IkkdBHg6C_wPkXIt-Vs
+send_user ">>>>> ssh_init begin >>>>>\r\n"
+spawn ssh -p 2022 -R 116.211.105.51:15024:10.100.50.24:22 remote@116.211.105.51
+expect  {
+        "continue connecting (yes/no)? " { send "yes\r" }
+        "password: " { send "$REMOTE_PASS\r" }
+        "]*" { send "vmstat 30  \r" }
+        eof { send_user "<<<<< ssh_init end <<<<<\n\n"; exit 0 }
+}
+expect  {
+        "password: " { send "$REMOTE_PASS\r" }
+        "]*" { send "vmstat 30  \r" }
+        eof { send_user "<<<<< ssh_init end <<<<<\n\n"; exit 2 }
+}
+expect  eof { send_user "<<<<< ssh_init end <<<<<\n\n"; exit 1 }
