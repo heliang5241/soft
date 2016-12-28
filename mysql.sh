@@ -191,5 +191,3 @@ fi
 setlimit 2>&1 | tee mysql-install.log
 installmysql 2>&1 | tee -a mysql-install.log
 CheckInstall 2>&1 | tee -a mysql-install.log
-CheckInstall 2>&1 | tee -a mysql-install.log
-CheckInstall 2>&1 | tee -a mysql-install.log
