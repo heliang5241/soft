@@ -80,8 +80,4 @@ chown -R mysql:mysql /data/mysql
 chown -R mysql:mysql /usr/local/mysql
 chown -R mysql:mysql /log
 
-
-
-
-
 setlimit
