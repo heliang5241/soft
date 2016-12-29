@@ -39,7 +39,6 @@ LOG=$DATE.log
     *)
         echo -e "\033[31m Done nothing,Exit. \033[0m"
         exit;
-
     esac
 
 rm -rf ping_failIP
@@ -83,5 +82,4 @@ fi
        cat log4.txt >> $LOG
        rm -rf *.txt
 echo '---------Update Success---------'
-
 done
