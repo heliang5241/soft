@@ -1,0 +1,25 @@
+
+#files_exp :
+
+#Store files and sh commands that need to be transferred to the target machine.
+#Only need to configure the runcmd.sh file to execute the script
+
+exp: ip_pass.txt
+
+### passwd group 1
+REMOTE_PASS=victor123!@#
+
+192.168.6.159
+192.168.13.13
+192.168.13.14
+
+
+### passwd group 2
+REMOTE_PASS=whty__2016
+
+192.168.20.232
+192.168.20.233
+
+
+#### single passwd 
+192.168.13.200 tianyu

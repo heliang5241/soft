@@ -1,0 +1,24 @@
+#!/usr/bin/expect -f
+
+#if {$argc<2} { puts stderr "error"; exit 1 }
+
+set REMOTE_IP [lindex $argv 0]
+set REMOTE_PASS [lindex $argv 1]
+
+
+
+
+set timeout 10
+match_max 2000
+send_user ">>>>> ssh_init begin >>>>>\r\n"
+spawn ssh root@$REMOTE_IP hostname 
+expect  {
+	"continue connecting (yes/no)? " { send "yes\r" } 
+        "password: " { send "$REMOTE_PASS\r" }
+	eof { send_user "<<<<< ssh_init end <<<<<\n\n"; exit 0 }
+}
+expect  {
+	"password: " { send "$REMOTE_PASS\r" } 
+	eof { send_user "<<<<< ssh_init end <<<<<\n\n"; exit 2 }
+}
+expect eof { send_user "<<<<< ssh_init end <<<<<\n\n"; exit 1 }

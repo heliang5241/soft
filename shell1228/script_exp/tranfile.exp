@@ -1,0 +1,17 @@
+#!/usr/bin/expect -f
+
+if {$argc<2} { puts stderr "error"; exit 1 }
+
+set REMOTE_IP [lindex $argv 0]
+set REMOTE_PASS [lindex $argv 1]
+#set HOSTNAME [lindex $argv 2]
+set timeout 300
+match_max 2000
+send_user ">>>>>  tran file   >>>>>\r\n"
+spawn scp -q -r   files_exp    root@${REMOTE_IP}:/root/
+expect "password"
+send  "$REMOTE_PASS\r"
+
+send "exit \r"
+expect eof { send_user "<<<<< tran file  <<<<<\n\n"; exit 0 }
+
