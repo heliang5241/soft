@@ -1,0 +1,16 @@
+#!/usr/bin/expect -f
+set REMOTE_IP [lindex $argv 0]
+set REMOTE_PASS [lindex $argv 1]
+set timeout 120
+match_max 2000
+send_user ">>>>>(2/4) Stop Tomcat Begin >>>>>\r\n"
+
+spawn ssh remote@${REMOTE_IP}
+expect "password"
+send  "$REMOTE_PASS\r"
+
+expect "]*"
+send "sh /home/remote/stoptomcat.sh \r"
+send "exit \r"
+
+expect  eof { send_user "<<<<<(2/4) Stop Tomcat End <<<<<\n\n"; exit 0 }

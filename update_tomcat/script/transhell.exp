@@ -1,0 +1,13 @@
+#!/usr/bin/expect -f
+set REMOTE_IP [lindex $argv 0]
+set REMOTE_PASS [lindex $argv 1]
+set timeout 120
+match_max 2000
+send_user ">>>>>(1/4) Transmission StopTomcat.sh Begin>>>>>\r\n"
+
+spawn scp -r script/stoptomcat.sh remote@${REMOTE_IP}:/home/remote
+expect "password"
+send "$REMOTE_PASS\r"
+send "exit \r"
+
+expect  eof { send_user "<<<<<(1/4) Transmission StopTomcat.sh End <<<<<\n\n"; exit 0 }

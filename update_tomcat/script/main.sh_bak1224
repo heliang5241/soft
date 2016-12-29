@@ -1,0 +1,34 @@
+#!/bin/bash
+
+if [ ! -f /usr/bin/expect ]; then
+echo "error: NO expect!"
+exit
+fi
+DATE=`date +'%Y-%m-%d'`
+LOG=/tmp/$DATE.log
+
+
+cat ip.txt|grep -v ^#|grep -v ^$ |while read line
+
+do
+export REMOTE_IP=`echo $line |awk '{print$1}'`
+export  REMOTE_PASS=Whty#1234
+
+sleep 1
+
+./ssh_init.exp $REMOTE_IP $REMOTE_PASS 
+SSH_RET=$?
+
+if [ "${SSH_RET}" = "0" ]; then
+        echo "Had DONE NO password authorized from local to $REMOTE_IP, Don't worry."
+        echo
+        exit
+fi
+./transhell.exp  $REMOTE_IP $REMOTE_PASS
+./stoptomcat.exp $REMOTE_IP $REMOTE_PASS
+./tranwebapp.exp  $REMOTE_IP $REMOTE_PASS
+./starttomcat.exp $REMOTE_IP $REMOTE_PASS
+echo '---------update susscess---------'
+#sleep 3;
+
+done

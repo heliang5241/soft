@@ -1,0 +1,16 @@
+#!/usr/bin/expect -f
+if {$argc<2} { puts stderr "error"; exit 1 }
+set REMOTE_IP [lindex $argv 0]
+set REMOTE_PASS [lindex $argv 1]
+set WORK_DIR [lindex $argv 2]
+set timeout 300
+match_max 2000
+send_user ">>>>>(3/4) Transmission Webapps Begin>>>>>\r\n"
+
+spawn scp -r ${WORK_DIR}/webapps/  remote@${REMOTE_IP}:${WORK_DIR}
+expect "password"
+send "$REMOTE_PASS\r"
+send "exit \r"
+
+expect eof { send_user "<<<<<(3/4) Transmission Webapps End <<<<<\n\n"; exit 0 }
+

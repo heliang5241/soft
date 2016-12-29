@@ -1,0 +1,15 @@
+#!/usr/bin/expect -f
+set REMOTE_IP [lindex $argv 0]
+set REMOTE_PASS [lindex $argv 1]
+set WORK_DIR [lindex $argv 2]
+set timeout 120
+match_max 2000
+send_user ">>>>>(4/4) Start Tomcat Begin >>>>>\r\n"
+
+spawn ssh remote@$REMOTE_IP
+expect "password: "
+send  "$REMOTE_PASS\r"
+expect "]*"
+send "$WORK_DIR/bin/startup.sh \r"
+send "exit \r"
+expect  eof { send_user "<<<<<(4/4) Start Tomcat End <<<<<\n\n"; exit 0 }
