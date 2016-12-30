@@ -1,0 +1,13 @@
+vi .bash_profile
+
+allowHostsList="192.168.150.180"
+remoteHost=$(env | grep SSH_CLIENT | awk '{print $1}' | awk -F "=" '{print 
+
+$2}')
+if echo "${allowHostsList}" | grep "${remoteHost}" > /dev/null
+   then :
+   else
+   exit 
+fi
+
+service sshd restart
