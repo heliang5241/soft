@@ -7,12 +7,10 @@ if [ $num -le 4 ];then
 echo $i
 fi
 done
-
-echo "########"
+echo "second way"
 for i in $a
 do
 if [ ${#i} -le 4 ];then
   echo $i
-
 fi
 done
