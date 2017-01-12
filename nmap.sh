@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#check_nmap()
+#check_nmap(){
 
 
     if [ ! -f /usr/bin/nmap ];then
@@ -15,10 +15,26 @@
         esac
 
     fi
+#}
 
+message(){
+        echo "Usage $0 [ port     from(MIN 1)  to(MAX 255) ]"
+        echo "Usage $0 [ Example:22      1           254   ]"
+        echo "Usage $0 [ Example:1521    2            5    ]"
+        echo "Usage $0 [ Example:3306    10           27   ]"
+
+}
+
+#count_parameter(){
+     if [ `echo $#` -ne 3 ];then
+        message
+        exit;    
+        
+     fi
+#}
 
 #saomiao
-#get_ip()
+#get_ip(){
 ip1=`ifconfig eth0|grep 'inet addr'|cut -c 21-34|awk -F '.' '{print$1}'`
 ip2=`ifconfig eth0|grep 'inet addr'|cut -c 21-34|awk -F '.' '{print$2}'`
 ip3=`ifconfig eth0|grep 'inet addr'|cut -c 21-34|awk -F '.' '{print$3}'`
@@ -55,3 +71,7 @@ lieshu=`cat hang.txt| head -n1 | awk -F ' ' '{print NF}'`
 
       done
 rm -rf *.txt
+#}
+#check_nmap
+#count_parameter
+#get_ip $1 $2 $3
