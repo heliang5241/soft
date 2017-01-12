@@ -33,6 +33,29 @@ message(){
      fi
 #}
 
+     if [[ `echo $1` != *[!0-9]* && `echo $1` -ge 1 && `echo $1` -le 65536 ]]; then
+        echo "">/dev/null
+     else
+        echo "`echo $1` is not a correct port,exit"
+        message
+        exit;
+     fi
+
+     if [[ `echo $2` != *[!0-9]* && `echo $2` -ge 1 && `echo $2` -le 255 ]]; then
+        echo "">/dev/null
+     else
+        echo "`echo $2` is not a correct ip,exit"
+        message
+        exit;
+     fi
+
+     if [[ `echo $3` != *[!0-9]* && `echo $3` -ge 1 && `echo $3` -le 255 ]]; then
+        echo "">/dev/null
+     else
+        echo "`echo $3` is not a correct ip,exit"
+        message
+        exit;
+     fi
 #saomiao
 #get_ip(){
 ip1=`ifconfig eth0|grep 'inet addr'|cut -c 21-34|awk -F '.' '{print$1}'`
@@ -51,11 +74,15 @@ cat 1.txt|grep open >/dev/null
          echo -e $hang >>hang.txt
    fi
 
-
-   if [ -f ip.txt ];then
-         rm -rf ip.txt
+   if [ ! -f hang.txt ];then
+         echo "`echo $1` port is not up on $ip1.$ip2.$ip3.$2-$3"
+         exit;
    fi
 
+   if [ -f ip.log ];then
+         rm -rf ip.log
+
+   fi
 #get open port's lieshu
 lieshu=`cat hang.txt| head -n1 | awk -F ' ' '{print NF}'`
    for((i=1;i<=$lieshu;i++)) 
