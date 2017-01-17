@@ -18,4 +18,9 @@ cd Python-2.7.8
 ./configure --enable-shared --enable-loadable-sqlite-extensions --with-zlib
 make
 make install
+mv /usr/bin/python /usr/bin/python2.6.6
+ln -s /usr/local/bin/python2.7 /usr/bin/python
+echo -e "/usr/local/lib" >>/etc/ld.so.conf
+/sbin/ldconfig
+/sbin/ldconfig -v
 
