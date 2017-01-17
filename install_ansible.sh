@@ -1,6 +1,6 @@
 #!/bin/bash
 yum -y install xz wget gcc make gdbm-devel openssl-devel sqlite-devel zlib-devel bzip2-devel
-work_dir=$work_dir
+work_dir=/root/source
 mkdir -p $work_dir
 cd $work_dir
 wget https://www.python.org/ftp/python/2.7.8/Python-2.7.8.tgz
