@@ -24,7 +24,7 @@ wget https://pypi.python.org/packages/source/J/Jinja2/Jinja2-2.7.3.tar.gz --no-c
 wget https://pypi.python.org/packages/source/e/ecdsa/ecdsa-0.11.tar.gz --no-check-certificate
 wget https://pypi.python.org/packages/source/p/paramiko/paramiko-1.15.1.tar.gz --no-check-certificate
 wget https://pypi.python.org/packages/source/s/simplejson/simplejson-3.6.5.tar.gz --no-check-certificate
-wget https://github.com/ansible/ansible/archive/v1.7.2.tar.gz --no-check-certificate
+wget -O Python-2.7.8.tgz https://github.com/ansible/ansible/archive/v1.7.2.tar.gz --no-check-certificate
 if [ -f setup.log ];then
 rm -rf setup.log
 fi
