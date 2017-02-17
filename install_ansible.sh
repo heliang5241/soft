@@ -95,13 +95,13 @@ cd $work_dir
 tar xvzf paramiko-1.15.1.tar.gz
 cd paramiko-1.15.1
 python setup.py install	
-CHECK_RUN “paramiko_install” >>setup.log
+CHECK_RUN "paramiko_install" >>setup.log
 
 cd $work_dir
 tar xvzf simplejson-3.6.5.tar.gz
 cd simplejson-3.6.5
 python setup.py install
-CHECK_RUN “simplejson_install” >>setup.log
+CHECK_RUN "simplejson_install" >>setup.log
 
 cd $work_dir
 tar xvzf ansible-1.7.2.tar.gz
