@@ -104,7 +104,6 @@ python setup.py install
 CHECK_RUN “simplejson_install” >>setup.log
 
 cd $work_dir
-mv v1.7.2.tar.gz ansible-1.7.2.tar.gz
 tar xvzf ansible-1.7.2.tar.gz
 cd ansible-1.7.2
 python setup.py install
