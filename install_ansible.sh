@@ -5,7 +5,7 @@ if [ "$?" = "0" ]; then
   echo "=============== Run [$1] succeed! ==============="
   sleep 3
 else
-  echo "Error, abort!"
+  echo "[$1] install Error, abort!"
   exit 2
 fi
 }
@@ -27,8 +27,8 @@ wget https://pypi.python.org/packages/source/s/simplejson/simplejson-3.6.5.tar.g
 wget -O ansible-1.7.2.tar.gz https://github.com/ansible/ansible/archive/v1.7.2.tar.gz --no-check-certificate
 count=`ls -l|grep '-'|wc -l`
 if [ $count -ne 11 ];then
-    echo "count is not Correct,exit"
-	exit
+    echo "count is not correct,exit"
+    exit
 fi
 if [ -f setup.log ];then
 rm -rf setup.log
