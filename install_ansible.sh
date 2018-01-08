@@ -1,4 +1,5 @@
 #!/bin/bash
+#
 CHECK_RUN()
 {
 if [ "$?" = "0" ]; then
